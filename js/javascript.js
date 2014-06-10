@@ -19,12 +19,6 @@ $(function(){
 
 	      	document.getElementById("image0").style.width = "50%";
 	      	//document.getElementById("image0").style.opacity = "0.5";
-	      	//document.getElementById("likeCount").style.position = "absolute";
-	      	//document.getElementById("likeCount").style.zindex = "10";
-	      	//document.getElementById("likeCount").style.top = "0";
-	      	//document.getElementById("likeCount").style.bottom = "0";
-	      	//document.getElementById("likeCount").style.left = "0";
-	      	//document.getElementById("likeCount").style.right = "0";
         }
     });
 });
