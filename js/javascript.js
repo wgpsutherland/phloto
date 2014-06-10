@@ -4,7 +4,7 @@ $(function(){
     	type: "GET",
         dataType: "jsonp",
         cache: false,
-        url: "https://api.instagram.com/v1/users/43153969/media/recent/?access_token=222716143.cde9b68.04e77477b2fd4524a0d2a91fb170142f",
+        url: "https://api.instagram.com/v1/users/43153969/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",
         success: function(data) {
 
 	        for (var i = 0; i < 20; i++) {
