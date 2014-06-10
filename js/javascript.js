@@ -13,7 +13,12 @@ $(function(){
 
 				$("#instafeed").append("<div class='instaframe' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
 
-				document.getElementById("image"+i+"").style.width = "25%"; 
+				document.getElementById("image"+i+"").style.width = "25%";
+
+
+
+
+				/*document.getElementById("image"+i+"").style.width = "25%"; 
 
 				if (count==4 || count==5) {
 					document.getElementById("image"+i+"").style.width = "50%"; 
@@ -23,8 +28,9 @@ $(function(){
 
 				if (count==6) {
 					count=0;
-				}
+				}*/
 	      	}
+	      	document.getElementById("image0").style.width = "50%";
         }
     });
 });
