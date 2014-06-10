@@ -116,7 +116,7 @@ h1 {
 
 #main {
 	width: 100%;
-	color: white;
+	color: black;
 }
 
 /*************************************************************************************************************/
@@ -137,6 +137,12 @@ header {
 	width: 100%;
 }
 
+#instafeed p {
+	color: red;
+	font-size: 5em;
+	text-shadow: 0px 0px 3px black;
+}
+
 .instaimage {
 	border: 3px solid white;
 	width: 100%;
@@ -145,6 +151,16 @@ header {
 .instaframe {
 	padding: 0.5%;
 	float: left;
+	position: relative;
+}
+
+#likeCount {
+	top: 25%;
+	z-index: 10;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+
 }
 
 
