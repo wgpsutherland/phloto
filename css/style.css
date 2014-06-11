@@ -142,10 +142,9 @@ header {
 }
 
 #instafeed p {
-	color: red;
-	font-size: 5em;
-	text-shadow: 0px 0px 3px black;
-	
+	color: white;
+	font-size: 9em;
+	text-shadow: 0px 0px 6px black;
 }
 
 .instaimage {
@@ -162,15 +161,25 @@ header {
 
 .instaframe .likeCount {
 	opacity: 0;
+	transition: opacity 0.5s;
 }
 
 .instaframe:hover .likeCount {
 	opacity: 1;
 }
 
+.instaframe:hover img{
+	opacity: 0.5;
+}
+
+.instaframe img{
+	transition: opacity 0.5s;
+}
+
 .likeCount {
-	top: 25%;
-	z-index: 10;
+	top: 0%;
+	padding-top: 20%;
+	z-index: 100;
 	position: absolute;
 	width: 100%;
 	text-align: center;
