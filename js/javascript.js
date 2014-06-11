@@ -13,8 +13,7 @@ $(function(){
 
 				document.getElementById("image"+i+"").style.width = "25%";
 
-				$("#image"+i+"").append("<p id='likeCount'>"+data.data[i].likes.count+"</p>");
-
+				$("#image"+i+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>");
 	      	}
 
 	      	document.getElementById("image0").style.width = "50%";
