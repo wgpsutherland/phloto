@@ -109,6 +109,41 @@ body {
 	background-color: black;
 }
 
+/* Lanscape iPad */
+@media (max-width: 1024px) {
+	body {
+
+	}
+}
+
+/* Portrait iPad */
+@media (max-width: 768px) {
+	body {
+
+	}
+}
+
+/* Landscape smartphone */
+@media (max-width: 600px) {
+	body {
+
+	}
+}
+
+/* smartphone */
+@media (max-width: 480px) {
+	body {
+
+	}
+}
+
+/* Small landscape smartphone (iPhone 4) */
+@media (max-width: 480px) and (orientation: landscape) {
+	body {
+
+	}
+}
+
 h1 {
 	font-size: 2em;
 
@@ -143,8 +178,35 @@ header {
 
 #instafeed p {
 	color: white;
-	font-size: 6em;
 	text-shadow: 0px 0px 6px black;
+}
+
+.bigImage p {
+	font-size: 10em;
+}
+
+.smallImage p {
+	font-size: 4.5em;
+}
+
+/* Portrait iPad */
+@media (max-width: 768px) {
+	.bigImage p {
+		font-size: 8em;
+	}
+	.smallImage p {
+		font-size: 3em;
+	}
+}
+
+/* smartphone */
+@media (max-width: 480px) {
+	.bigImage p {
+		font-size: 6em;
+	}
+	.smallImage p {
+		font-size: 2em;
+	}
 }
 
 .instaimage {
@@ -156,7 +218,6 @@ header {
 	padding: 0.5%;
 	float: left;
 	position: relative;
-	width: 100%;
 }
 
 .instaframe .likeCount {
@@ -185,11 +246,32 @@ header {
 	text-align: center;
 }
 
-.likeCount:hover  {
+.smallImage {
+	width: 25%;
 }
 
-#likeCount p {
-	
+.bigImage {
+	width: 50%;
+}
+
+/* Lanscape iPad */
+@media (max-width: 1024px) {
+	.smallImage {
+		width: calc(100% / 3);
+	}
+	.bigImage {
+		width: calc(200% / 3);
+	}
+}
+
+/* Landscape smartphone */
+@media (max-width: 600px) {
+	.smallImage {
+		width: 50%;
+	}
+	.bigImage {
+		width: 100%;
+	}
 }
 
 /*************************************************************************************************************/

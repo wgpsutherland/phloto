@@ -9,14 +9,18 @@ $(function(){
 
 	        for (var i = 0; i < 20; i++) {
 
-				$("#instafeed").append("<div class='instaframe' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
+				$("#instafeed").append("<div class='instaframe smallImage' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
 
-				document.getElementById("image"+i+"").style.width = "25%";
 
 				$("#image"+i+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>");
 	      	}
 
-	      	document.getElementById("image0").style.width = "50%";
+	      	var d = document.getElementById("image0");
+			d.className = "instaframe bigImage";
         }
     });
 });
+
+
+
+
