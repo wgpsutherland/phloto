@@ -231,10 +231,16 @@ header {
 
 .instaframe:hover img{
 	opacity: 0.5;
+	
+	filter: blur(7px);
+	-webkit-filter: blur(7px);
+	-moz-filter: blur(7px);
+	-o-filter: blur(7px);
+	-ms-filter: blur(7px);
 }
 
 .instaframe img{
-	transition: opacity 0.5s;
+	transition: all 0.5s;
 }
 
 .likeCount {
