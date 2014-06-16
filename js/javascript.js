@@ -1,26 +1,51 @@
-$(function(){
+$(document).ready(function() {
 
+	var userName = "the1975";
+
+	/*userName = document.getElementById('userNameText').value;
+
+	var userId = "";*/
+
+	$("#userHeader").append("// @ "+userName.split('').join(' ')+" //");
+
+	// converts the given username into the user id
 	$.ajax({
     	type: "GET",
         dataType: "jsonp",
         cache: false,
-        url: "https://api.instagram.com/v1/users/43153969/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",  
-        success: function(data) {
+        url: "https://api.instagram.com/v1/users/search?q="+userName+"&client_id=cde9b68da7084efb88cec85619580eb0",  
+        success: function(data) {	
 
-	        for (var i = 0; i < 20; i++) {
+			userId = data.data[0].id;
 
-				$("#instafeed").append("<div class='instaframe smallImage' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
+			// gets the pictures from the users account using the user id
+			$.ajax({
+		    	type: "GET",
+		        dataType: "jsonp",
+		        cache: false,
+		        url: "https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",  
+		        success: function(data) {
 
+		        	// loops through the 20 latest images on the intagram feed
+			        for (var i = 0; i < 20; i++) {
 
-				$("#image"+i+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>");
-	      	}
+			        	// inserts the images to the page
+						$("#instafeed").append("<div class='instaframe smallImage' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
 
-	      	var d = document.getElementById("image0");
-			d.className = "instaframe bigImage";
-        }
+						// inserts the like counts for each image
+						$("#image"+i+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>");
+
+						// working on this heart css
+						$("#image"+i+"").append("<div id='heart'></div>");
+			      	}
+
+			      	// the first image is made larger
+			      	var d = document.getElementById("image0");
+					d.className = "instaframe bigImage";
+
+					console.log(data.data[0].likes.count);
+		        }
+		    });
+		}
     });
 });
-
-
-
-
