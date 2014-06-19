@@ -1,9 +1,11 @@
 function instagramPhotos (userName) {
 
-	/*userName = document.getElementById('userNameText').value;
+	// removes and adds the div so that only the current images are shown
+	var element = document.getElementById("instafeed");
+	element.parentNode.removeChild(element);
+	$("#main").append("<div id='instafeed'></div>");
 
-	*/
-
+	// need to work on this so that multiple usernames are not shown
 	$("#userHeader").append("// @ "+userName.split('').join(' ')+" //");
 
 	// converts the given username into the user id
@@ -53,8 +55,6 @@ function takeUsername() {
 	$('#usernameInput').submit(function(){
 
 		var username = document.getElementById('userNameText').value;
-
-		$("#text").append(username);
 
 		instagramPhotos(username);
 
