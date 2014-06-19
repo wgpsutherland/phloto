@@ -2,7 +2,7 @@ function instagramPhotos (userName) {
 
 	/*userName = document.getElementById('userNameText').value;
 
-	var userId = "";*/
+	*/
 
 	$("#userHeader").append("// @ "+userName.split('').join(' ')+" //");
 
@@ -14,7 +14,7 @@ function instagramPhotos (userName) {
         url: "https://api.instagram.com/v1/users/search?q="+userName+"&client_id=cde9b68da7084efb88cec85619580eb0",  
         success: function(data) {	
 
-			userId = data.data[0].id;
+			var userId = data.data[0].id;
 
 			// gets the pictures from the users account using the user id
 			$.ajax({
@@ -48,10 +48,24 @@ function instagramPhotos (userName) {
     });
 }
 
+function takeUsername() {
 
+	$('#usernameInput').submit(function(){
+
+		var username = document.getElementById('userNameText').value;
+
+		$("#text").append(username);
+
+		instagramPhotos(username);
+
+		return false;	
+	});
+}
 
 $(document).ready(function() {
 
-	instagramPhotos("the1975");
+	takeUsername();
 
 });
+
+
