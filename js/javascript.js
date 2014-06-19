@@ -1,6 +1,4 @@
-$(document).ready(function() {
-
-	var userName = "the1975";
+function instagramPhotos (userName) {
 
 	/*userName = document.getElementById('userNameText').value;
 
@@ -48,4 +46,12 @@ $(document).ready(function() {
 		    });
 		}
     });
+}
+
+
+
+$(document).ready(function() {
+
+	instagramPhotos("the1975");
+
 });
