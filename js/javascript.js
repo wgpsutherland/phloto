@@ -5,7 +5,12 @@ function instagramPhotos (userName) {
 	element.parentNode.removeChild(element);
 	$("#main").append("<div id='instafeed'></div>");
 
-	// need to work on this so that multiple usernames are not shown
+	// removes and adds the div so that only the current username is shown
+	var element = document.getElementById("userHeader");
+	element.parentNode.removeChild(element);
+	$("header").prepend("<h1 id='userHeader'></h1>");
+
+	// displays the currently searched username in the header
 	$("#userHeader").append("// @ "+userName.split('').join(' ')+" //");
 
 	// converts the given username into the user id
