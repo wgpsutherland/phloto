@@ -164,8 +164,22 @@ h1 {
 
 header {
 	width: 100%;
-	padding: 1%;
 	background-color: white;
+	float: left;
+	padding: 1%;
+}
+
+#userHeader {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+#usernameInput {
+	width: 50%;
+	height: 100%;
+	background-color: white;
+	float: right;
 }
 
 /*************************************************************************************************************/
