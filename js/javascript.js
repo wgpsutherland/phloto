@@ -11,7 +11,7 @@ function instagramPhotos (userName) {
 	$("header").prepend("<h1 id='userHeader'></h1>");
 
 	// displays the currently searched username in the header
-	$("#userHeader").append("// @ "+userName.split('').join(' ')+" //");
+	//$("#userHeader").append("// @ "+userName.split('').join(' ')+" //");
 
 	// converts the given username into the user id
 	$.ajax({
@@ -57,12 +57,14 @@ function instagramPhotos (userName) {
 
 function takeUsername() {
 
-	$('#usernameInput').submit(function(){
+	// when the submit button is pressed
+	$('#usernameForm').submit(function(){
 
 		var username = document.getElementById('userNameText').value;
 
 		instagramPhotos(username);
 
+		// doesn't submit the form, so page doesn't reload
 		return false;	
 	});
 }

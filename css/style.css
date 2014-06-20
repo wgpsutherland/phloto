@@ -60,7 +60,7 @@ body {
 }
 
 /*************************************************************************************************************/
-/***************************************** MEDIA  TEMPLATE ***************************************************/
+/***************************************** MEDIA TEMPLATE ****************************************************/
 /*************************************************************************************************************/
 
 /* Everything and Desktops */
@@ -91,14 +91,14 @@ body {
 }
 
 /*************************************************************************************************************/
-/***************************************** COLOURS  **********************************************************/
+/***************************************** COLOURS ***********************************************************/
 /*************************************************************************************************************/
 
 
 
 
 /*************************************************************************************************************/
-/***************************************** BODY  *************************************************************/
+/***************************************** BODY **************************************************************/
 /*************************************************************************************************************/
 
 body {
@@ -144,11 +144,6 @@ body {
 	}
 }
 
-h1 {
-	font-size: 2em;
-
-}
-
 #main {
 	width: 100%;
 	color: white;
@@ -167,19 +162,56 @@ header {
 	background-color: white;
 	float: left;
 	padding: 1%;
+	text-align: right;
 }
 
-#userHeader {
-	width: 50%;
+h1 {
+	font-size: 2em;
+}
+
+#usernameForm {
+	width: 100%;
 	height: 100%;
+	background-color: white;
 	float: left;
 }
 
-#usernameInput {
-	width: 50%;
+#userNameText {
+	font-size: 2em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	width: 75%;
 	height: 100%;
-	background-color: white;
-	float: right;
+	border: 3px solid black;	
+}
+
+input[type="submit"] {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 2em;
+	width: 24%;
+	background-color: black;
+	color: white;
+	border-radius: 0px;
+	border: none;
+	height: 100%;
+}
+
+/* Landscape smartphone */
+@media (max-width: 600px) {
+
+	#usernameForm {
+		width: 100%;
+	}
+
+	#userNameText {
+		font-size: 1em;
+	}
+
+	input[type="submit"] {
+		font-size: 1em;
+		width: 23%
+	}
 }
 
 /*************************************************************************************************************/
@@ -189,6 +221,62 @@ header {
 #instafeed {
 	width: 100%;
 }
+
+.instaimage {
+	border: 3px solid white;
+	width: 100%;
+}
+
+.instaframe {
+	padding: 0.5%;
+	float: left;
+	position: relative;
+}
+
+.instaframe:hover img{
+	opacity: 0.5;
+	filter: blur(7px);
+	-webkit-filter: blur(7px);
+	-moz-filter: blur(7px);
+	-o-filter: blur(7px);
+	-ms-filter: blur(7px);
+}
+
+.instaframe img{
+	transition: all 0.5s;
+}
+
+.smallImage {
+	width: 25%;
+}
+
+.bigImage {
+	width: 50%;
+}
+
+/* Lanscape iPad */
+@media (max-width: 1024px) {
+	.smallImage {
+		width: calc(100% / 3);
+	}
+	.bigImage {
+		width: calc(200% / 3);
+	}
+}
+
+/* Landscape smartphone */
+@media (max-width: 600px) {
+	.smallImage {
+		width: 50%;
+	}
+	.bigImage {
+		width: 100%;
+	}
+}
+
+/*************************************************************************************************************/
+/***************************************** LIKE COUNT ********************************************************/
+/*************************************************************************************************************/
 
 #instafeed p {
 	color: white;
@@ -223,17 +311,6 @@ header {
 	}
 }
 
-.instaimage {
-	border: 3px solid white;
-	width: 100%;
-}
-
-.instaframe {
-	padding: 0.5%;
-	float: left;
-	position: relative;
-}
-
 .instaframe .likeCount {
 	opacity: 0;
 	transition: opacity 0.5s;
@@ -243,19 +320,6 @@ header {
 	opacity: 1;
 }
 
-.instaframe:hover img{
-	opacity: 0.5;
-	filter: blur(7px);
-	-webkit-filter: blur(7px);
-	-moz-filter: blur(7px);
-	-o-filter: blur(7px);
-	-ms-filter: blur(7px);
-}
-
-.instaframe img{
-	transition: all 0.5s;
-}
-
 .likeCount {
 	top: 0%;
 	padding-top: 40%;
@@ -263,34 +327,6 @@ header {
 	position: absolute;
 	width: 100%;
 	text-align: center;
-}
-
-.smallImage {
-	width: 25%;
-}
-
-.bigImage {
-	width: 50%;
-}
-
-/* Lanscape iPad */
-@media (max-width: 1024px) {
-	.smallImage {
-		width: calc(100% / 3);
-	}
-	.bigImage {
-		width: calc(200% / 3);
-	}
-}
-
-/* Landscape smartphone */
-@media (max-width: 600px) {
-	.smallImage {
-		width: 50%;
-	}
-	.bigImage {
-		width: 100%;
-	}
 }
 
 /*************************************************************************************************************/
@@ -360,8 +396,6 @@ header {
 /*************************************************************************************************************/
 /***************************************** SPLASH ************************************************************/
 /*************************************************************************************************************/
-
-
 
 /*************************************************************************************************************/
 /***************************************** FOOTER ************************************************************/
