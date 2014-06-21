@@ -201,10 +201,6 @@ input[type="submit"] {
 /* Landscape smartphone */
 @media (max-width: 600px) {
 
-	#usernameForm {
-		width: 100%;
-	}
-
 	#userNameText {
 		font-size: 1em;
 	}
@@ -212,6 +208,14 @@ input[type="submit"] {
 	input[type="submit"] {
 		font-size: 1em;
 		width: 23%
+	}
+}
+
+/* smartphone */
+@media (max-width: 480px) {
+
+	input[type="submit"] {
+		font-size: 0.8em;
 	}
 }
 
