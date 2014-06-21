@@ -183,6 +183,7 @@ h1 {
 	width: 75%;
 	height: 100%;
 	border: 3px solid black;	
+	padding-bottom: 4px;
 }
 
 input[type="submit"] {
@@ -190,12 +191,19 @@ input[type="submit"] {
 	font-weight: 300;
 	font-size: 2em;
 	width: 24%;
-	background-color: black;
-	color: white;
+	background-color: white;
+	color: black;
 	border-radius: 0px;
-	border: none;
+	border: 3px solid black;
 	height: 100%;
 	-webkit-appearance: none;
+	transition: background-color 0.5s,color 0.5s;
+	vertical-align: top;
+}
+
+input[type="submit"]:hover {
+	background-color: black;
+	color: white;
 }
 
 /* Landscape smartphone */
@@ -213,6 +221,10 @@ input[type="submit"] {
 
 /* smartphone */
 @media (max-width: 480px) {
+
+	#userNameText {
+		font-size: 0.8em;
+	}
 
 	input[type="submit"] {
 		font-size: 0.8em;
