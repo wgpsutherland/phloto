@@ -5,16 +5,7 @@ function instagramPhotos (userName) {
 	element.parentNode.removeChild(element);
 	$("#main").append("<div id='instafeed'></div>");
 
-	// removes and adds the div so that only the current username is shown
-	var element = document.getElementById("userHeader");
-	element.parentNode.removeChild(element);
-	$("header").prepend("<h1 id='userHeader'></h1>");
-
-	// displays the currently searched username in the header
-	//$("#userHeader").append("// @ "+userName.split('').join(' ')+" //");
-
-	// converts the given username into the user id
-	$.ajax({
+	$.ajax({ // converts the given username into the user id
     	type: "GET",
         dataType: "jsonp",
         cache: false,
@@ -23,32 +14,23 @@ function instagramPhotos (userName) {
 
 			var userId = data.data[0].id;
 
-			// gets the pictures from the users account using the user id
-			$.ajax({
+			$.ajax({ // gets the pictures from the users account using the user id
 		    	type: "GET",
 		        dataType: "jsonp",
 		        cache: false,
 		        url: "https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",  
 		        success: function(data) {
 
-		        	// loops through the 20 latest images on the intagram feed
-			        for (var i = 0; i < 20; i++) {
+		        	
+			        for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the intagram feed
 
-			        	// inserts the images to the page
 						$("#instafeed").append("<div class='instaframe smallImage' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
-
-						// inserts the like counts for each image
-						$("#image"+i+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>");
-
-						// working on this heart css
-						$("#image"+i+"").append("<div id='heart'></div>");
+						$("#image"+i+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
+						$("#image"+i+"").append("<div id='heart'></div>"); // working on this heart css
 			      	}
-
-			      	// the first image is made larger
-			      	var d = document.getElementById("image0");
+			      	
+			      	var d = document.getElementById("image0"); // the first image is made larger
 					d.className = "instaframe bigImage";
-
-					console.log(data.data[0].likes.count);
 		        }
 		    });
 		}
@@ -57,22 +39,19 @@ function instagramPhotos (userName) {
 
 function takeUsername() {
 
-	// when the submit button is pressed
 	$('#usernameForm').submit(function(){
 
 		var username = document.getElementById('userNameText').value;
 
 		instagramPhotos(username);
 
-		// doesn't submit the form, so page doesn't reload
-		return false;	
+		return false; // doesn't submit the form, so page doesn't reload - allowing this all to work
 	});
 }
 
 $(document).ready(function() {
 
 	takeUsername();
-
 });
 
 
