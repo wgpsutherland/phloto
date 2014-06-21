@@ -20,7 +20,6 @@ function instagramPhotos (userName) {
 		        cache: false,
 		        url: "https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",  
 		        success: function(data) {
-
 		        	
 			        for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the intagram feed
 
@@ -29,8 +28,8 @@ function instagramPhotos (userName) {
 						$("#image"+i+"").append("<div id='heart'></div>"); // working on this heart css
 			      	}
 			      	
-			      	var d = document.getElementById("image0"); // the first image is made larger
-					d.className = "instaframe bigImage";
+			      	var d = document.getElementById("image0");
+					d.className = "instaframe bigImage"; // the first image in the feed is made larger
 		        }
 		    });
 		}
