@@ -359,7 +359,20 @@ input[type="submit"]:hover {
 
 /* Portrait iPad */
 @media (max-width: 768px) {
+	#titleBox {
+		padding-top: 25%;
+	}
+}
 
+/* Landscape smartphone */
+@media (max-width: 600px) {
+	#titleBox {
+		padding-top: 15%;
+	}
+}
+
+/* smartphone */
+@media (max-width: 480px) {
 	#titleBox {
 		padding-top: 25%;
 	}
