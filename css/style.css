@@ -112,28 +112,28 @@ body {
 /* Lanscape iPad */
 @media (max-width: 1024px) {
 	body {
-
+		background-color: red;
 	}
 }
 
 /* Portrait iPad */
 @media (max-width: 768px) {
 	body {
-
+		background-color: blue;
 	}
 }
 
 /* Landscape smartphone */
 @media (max-width: 600px) {
 	body {
-
+		background-color: pink;
 	}
 }
 
 /* smartphone */
 @media (max-width: 480px) {
 	body {
-
+		background-color: yellow;
 	}
 }
 
@@ -183,7 +183,8 @@ h1 {
 	width: 75%;
 	height: 100%;
 	border: 3px solid black;	
-	padding-bottom: 4px;
+	padding-bottom: 3px;
+	padding-top: 2px;
 }
 
 input[type="submit"] {
@@ -347,10 +348,32 @@ input[type="submit"]:hover {
 }
 
 /*************************************************************************************************************/
-/***************************************** NAV ***************************************************************/
+/***************************************** TITLE *************************************************************/
 /*************************************************************************************************************/
 
+#titleBox {
+	width: 100%;
+	text-align: center;
+	padding-top: 15%;
+}
 
+/* Portrait iPad */
+@media (max-width: 768px) {
+
+	#titleBox {
+		padding-top: 25%;
+	}
+}
+
+#titleBox h1 {
+	font-size: 5em;
+	font-weight: 400;
+}
+
+#titleBox p {
+	padding: 5%;
+	font-size: 2em;
+}
 
 /*************************************************************************************************************/
 /***************************************** HEART *************************************************************/

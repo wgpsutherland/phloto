@@ -1,5 +1,9 @@
 function instagramPhotos (userName) {
 
+	//removes the welcome text
+	var element = document.getElementById("titleBox");
+	element.parentNode.removeChild(element);
+
 	// removes and adds the div so that only the current images are shown
 	var element = document.getElementById("instafeed");
 	element.parentNode.removeChild(element);
@@ -20,7 +24,7 @@ function instagramPhotos (userName) {
 		        cache: false,
 		        url: "https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",  
 		        success: function(data) {
-		        	
+
 			        for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the intagram feed
 
 						$("#instafeed").append("<div class='instaframe smallImage' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
