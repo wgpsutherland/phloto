@@ -112,28 +112,28 @@ body {
 /* Lanscape iPad */
 @media (max-width: 1024px) {
 	body {
-		background-color: red;
+
 	}
 }
 
 /* Portrait iPad */
 @media (max-width: 768px) {
 	body {
-		background-color: blue;
+
 	}
 }
 
 /* Landscape smartphone */
 @media (max-width: 600px) {
 	body {
-		background-color: pink;
+
 	}
 }
 
 /* smartphone */
 @media (max-width: 480px) {
 	body {
-		background-color: yellow;
+
 	}
 }
 
