@@ -1,12 +1,7 @@
 function instagramPhotos (userName) {
 
-	//removes the welcome text
-	var element = document.getElementById("titleBox");
-	element.parentNode.removeChild(element);
-
 	// removes and adds the div so that only the current images are shown
-	var element = document.getElementById("instafeed");
-	element.parentNode.removeChild(element);
+	var element = document.getElementById("instafeed"); element.parentNode.removeChild(element);
 	$("#main").append("<div id='instafeed'></div>");
 
 	$.ajax({ // converts the given username into the user id
@@ -44,9 +39,17 @@ function takeUsername() {
 
 	$('#usernameForm').submit(function(){
 
+		var element = document.getElementById("titleBox"); element.parentNode.removeChild(element); //removes the welcome text
+
+		document.getElementById("buttonID").value = "search again";
+
 		var username = document.getElementById('userNameText').value;
 
 		instagramPhotos(username);
+
+		var element = document.getElementById("userNameText"); element.parentNode.removeChild(element); //removes the search bar text
+
+		var element = document.getElementById("buttonID").style.width = "100%"; //makes the search bar fill the header
 
 		return false; // doesn't submit the form, so page doesn't reload - allowing this all to work
 	});
@@ -56,5 +59,4 @@ $(document).ready(function() {
 
 	takeUsername();
 });
-
 
