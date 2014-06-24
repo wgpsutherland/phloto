@@ -234,7 +234,7 @@ input[type="submit"]:hover {
 
 #usernameDisplay {
 	float: left;
-	border: 3px solid black;
+	border: 3px solid transparent;
 	width: 75%;
 	height: 100%;
 	font-size: 2em;
