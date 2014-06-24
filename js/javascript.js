@@ -49,7 +49,9 @@ function takeUsername() {
 
 		var element = document.getElementById("userNameText"); element.parentNode.removeChild(element); //removes the search bar text
 
-		var element = document.getElementById("buttonID").style.width = "100%"; //makes the search bar fill the header
+		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.split('').join(' ')+" //</div>"); //adds text of username searched to the header
+
+		document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
 
 		return false; // doesn't submit the form, so page doesn't reload - allowing this all to work
 	});
