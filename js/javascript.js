@@ -1,9 +1,5 @@
 function instagramPhotos (userName) {
 
-	// removes and adds the div so that only the current images are shown
-	var element = document.getElementById("instafeed"); element.parentNode.removeChild(element);
-	$("#main").append("<div id='instafeed'></div>");
-
 	$.ajax({ // converts the given username into the user id
     	type: "GET",
         dataType: "jsonp",
@@ -27,29 +23,26 @@ function instagramPhotos (userName) {
 						$("#image"+i+"").append("<div id='heart'></div>"); // working on this heart css
 			      	}
 			      	
-			      	var d = document.getElementById("image0");
-					d.className = "instaframe bigImage"; // the first image in the feed is made larger
+			      	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
 		        }
 		    });
 		}
     });
 }
 
-function takeUsername() {
+function onUsernameSubmit() {
 
 	$('#usernameForm').submit(function(){
 
-		var element = document.getElementById("titleBox"); element.parentNode.removeChild(element); //removes the welcome text
+		var username = document.getElementById('userNameText').value;
 
 		document.getElementById("buttonID").value = "back";
 
-		var username = document.getElementById('userNameText').value;
+		removeElements();
 
 		instagramPhotos(username);
 
-		var element = document.getElementById("userNameText"); element.parentNode.removeChild(element); //removes the search bar text
-
-		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.split('').join(' ')+" //</div>"); //adds text of username searched to the header
+		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.split('').join(' ')+" //</div>"); // adds text of username searched to the header
 
 		document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
 
@@ -57,8 +50,14 @@ function takeUsername() {
 	});
 }
 
+function removeElements() {
+
+	document.getElementById("titleBox").parentNode.removeChild(element); // removes the welcome text
+	document.getElementById("userNameText").parentNode.removeChild(element); // removes the search bar text
+}
+
 $(document).ready(function() {
 
-	takeUsername();
+	onUsernameSubmit();
 });
 
