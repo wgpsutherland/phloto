@@ -52,8 +52,8 @@ function onUsernameSubmit() {
 
 function removeElements() {
 
-	document.getElementById("titleBox").parentNode.removeChild(element); // removes the welcome text
-	document.getElementById("userNameText").parentNode.removeChild(element); // removes the search bar text
+	var element = document.getElementById("titleBox"); element.parentNode.removeChild(element); //removes the welcome text
+	var element = document.getElementById("userNameText"); element.parentNode.removeChild(element); //removes the search bar text
 }
 
 $(document).ready(function() {
