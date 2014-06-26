@@ -41,7 +41,7 @@ function takeUsername() {
 
 		var element = document.getElementById("titleBox"); element.parentNode.removeChild(element); //removes the welcome text
 
-		document.getElementById("buttonID").value = "search again";
+		document.getElementById("buttonID").value = "back";
 
 		var username = document.getElementById('userNameText').value;
 

@@ -207,6 +207,17 @@ input[type="submit"]:hover {
 	color: white;
 }
 
+#usernameDisplay {
+	float: left;
+	border: 3px solid transparent;
+	width: 75%;
+	height: 100%;
+	font-size: 2em;
+	padding-top: 7px;
+	text-align: left;
+	padding-left: 5px;
+}
+
 /* Landscape smartphone */
 @media (max-width: 600px) {
 
@@ -217,6 +228,10 @@ input[type="submit"]:hover {
 	input[type="submit"] {
 		font-size: 1em;
 		width: 23%
+	}
+
+	#usernameDisplay {
+		font-size: 1em;
 	}
 }
 
@@ -230,17 +245,10 @@ input[type="submit"]:hover {
 	input[type="submit"] {
 		font-size: 0.8em;
 	}
-}
 
-#usernameDisplay {
-	float: left;
-	border: 3px solid transparent;
-	width: 75%;
-	height: 100%;
-	font-size: 2em;
-	padding-top: 7px;
-	text-align: left;
-	padding-left: 5px;
+	#usernameDisplay {
+		font-size: 0.8em;
+	}
 }
 
 /*************************************************************************************************************/
