@@ -60,7 +60,7 @@ function instagramPhotos (userName) {
 }
 
 function nextTwenty(start, data) {
-	
+
 	for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram fee
 		var id = (i+start);
 
@@ -82,7 +82,7 @@ function onUsernameSubmit() {
 
 		instagramPhotos(username);
 
-		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.split('').join(' ')+" //</div>"); // adds text of username searched to the header
+		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.toLowerCase().split('').join(' ')+" //</div>"); // adds text of username searched to the header
 
 		document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
 
