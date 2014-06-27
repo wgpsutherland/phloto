@@ -9,41 +9,65 @@ function instagramPhotos (userName) {
 
 			var userId = data.data[0].id;
 
-			$.ajax({ // gets the pictures from the users account using the user id
+			$.ajax({ // gets images 1-20
 		    	type: "GET",
 		        dataType: "jsonp",
 		        cache: false,
 		        url: "https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",  
 		        success: function(data) {
 
-			        for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram feed
+			        nextTwenty(0, data);
 
-						$("#instafeed").append("<div class='instaframe smallImage' id='image"+i+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
-						$("#image"+i+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
-						$("#image"+i+"").append("<div id='heart'></div>"); // working on this heart css
-			      	}
-			      
-			      	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
-
-			      	$.ajax({ // gets the next 20 images
+			      	$.ajax({ // gets images 21-40
 				    	type: "GET",
 				        dataType: "jsonp",
 				        cache: false,
 				        url: data.pagination.next_url,  
 				        success: function(data) {
 
-				        	for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram feed
+				        	nextTwenty(20, data);
 
-								$("#instafeed").append("<div class='instaframe smallImage' id='image"+(i+20)+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
-								$("#image"+(i+20)+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
-								$("#image"+(i+20)+"").append("<div id='heart'></div>"); // working on this heart css
-					      	}
+					      	$.ajax({ // gets images 41-60
+						    	type: "GET",
+						        dataType: "jsonp",
+						        cache: false,
+						        url: data.pagination.next_url,  
+						        success: function(data) {
+
+						        	nextTwenty(40, data);
+
+							      	$.ajax({ // gets images 61-80
+								    	type: "GET",
+								        dataType: "jsonp",
+								        cache: false,
+								        url: data.pagination.next_url,  
+								        success: function(data) {
+
+								        	nextTwenty(60, data);
+									    }
+								    });
+							    }
+						    });
 					    }
 				    });
+
+			      	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
+
 		        }
 		    });
 		}
     });
+}
+
+function nextTwenty(start, data) {
+	
+	for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram fee
+		var id = (i+start);
+
+		$("#instafeed").append("<div class='instaframe smallImage' id='image"+id+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
+		$("#image"+id+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
+		$("#image"+id+"").append("<div id='heart'></div>"); // working on this heart css
+  	}
 }
 
 function onUsernameSubmit() {
