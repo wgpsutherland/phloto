@@ -9,53 +9,29 @@ function instagramPhotos (userName) {
 
 			var userId = data.data[0].id;
 
-			$.ajax({ // gets images 1-20
-		    	type: "GET",
-		        dataType: "jsonp",
-		        cache: false,
-		        url: "https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",  
-		        success: function(data) {
-
-			        nextTwenty(0, data);
-
-			      	$.ajax({ // gets images 21-40
-				    	type: "GET",
-				        dataType: "jsonp",
-				        cache: false,
-				        url: data.pagination.next_url,  
-				        success: function(data) {
-
-				        	nextTwenty(20, data);
-
-					      	$.ajax({ // gets images 41-60
-						    	type: "GET",
-						        dataType: "jsonp",
-						        cache: false,
-						        url: data.pagination.next_url,  
-						        success: function(data) {
-
-						        	nextTwenty(40, data);
-
-							      	$.ajax({ // gets images 61-80
-								    	type: "GET",
-								        dataType: "jsonp",
-								        cache: false,
-								        url: data.pagination.next_url,  
-								        success: function(data) {
-
-								        	nextTwenty(60, data);
-									    }
-								    });
-							    }
-						    });
-					    }
-				    });
-
-			      	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
-
-		        }
-		    });
+			getImages("https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",0,5,0);
 		}
+    });
+}
+
+function getImages(URL, currentDepth, maxDepth, imageNum) {
+
+	$.ajax({ // gets images 1-20
+    	type: "GET",
+        dataType: "jsonp",
+        cache: false,
+        url: URL,  
+        success: function(data) {
+
+        	nextTwenty(imageNum, data);
+
+        	if(currentDepth!=maxDepth) {
+
+        		getImages(data.pagination.next_url, currentDepth+1, maxDepth, imageNum+20);
+        	}
+
+        	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
+    	}
     });
 }
 
@@ -85,8 +61,6 @@ function onUsernameSubmit() {
 		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.toLowerCase().split('').join(' ')+" //</div>"); // adds text of username searched to the header
 
 		document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
-
-
 
 		return false; // doesn't submit the form, so page doesn't reload - allowing this all to work
 	});
