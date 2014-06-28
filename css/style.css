@@ -392,9 +392,29 @@ input[type="submit"]:hover {
 	padding-top: 15%;
 }
 
+#titleBox h1 {
+	font-size: 5em;
+	font-weight: 400;
+}
+
+#titleBox p {
+	padding: 5%;
+	font-size: 2em;
+}
+
+/* Lanscape iPad */
+@media (max-width: 1024px) {
+	#titleBox p {
+		padding-top: 15%;
+	}
+}
+
 /* Portrait iPad */
 @media (max-width: 768px) {
 	#titleBox {
+		padding-top: 30%;
+	}
+	#titleBox p {
 		padding-top: 25%;
 	}
 }
@@ -404,6 +424,9 @@ input[type="submit"]:hover {
 	#titleBox {
 		padding-top: 15%;
 	}
+	#titleBox p {
+		padding-top: 8%;
+	}
 }
 
 /* smartphone */
@@ -411,16 +434,9 @@ input[type="submit"]:hover {
 	#titleBox {
 		padding-top: 25%;
 	}
-}
-
-#titleBox h1 {
-	font-size: 5em;
-	font-weight: 400;
-}
-
-#titleBox p {
-	padding: 5%;
-	font-size: 2em;
+	#titleBox p {
+		padding-top: 25%;
+	}
 }
 
 /*************************************************************************************************************/
