@@ -159,6 +159,13 @@ header {
 	height: 100%;
 }
 
+/* Landscape smartphone */
+@media (max-width: 600px) {
+	header {
+		margin-bottom: 1%;
+	}
+}
+
 h1 {
 	font-size: 2em;
 }
