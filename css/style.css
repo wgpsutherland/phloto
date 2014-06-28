@@ -244,7 +244,7 @@ input[type="submit"]:hover {
 
 	#usernameDisplay {
 		font-size: 1em;
-		padding-top: 0px;
+		padding-top: 4px;
 		vertical-align: middle;
 	}
 }
