@@ -1,4 +1,7 @@
-function instagramPhotos (userName) {
+var nextPageUrl;
+var imageNum = 0;
+
+function instagramPhotos(userName) {
 
 	$.ajax({ // converts the given username into the user id
     	type: "GET",
@@ -9,26 +12,26 @@ function instagramPhotos (userName) {
 
 			var userId = data.data[0].id;
 
-			getImages("https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",0,5,0);
+			getImages("https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",imageNum);
+
+			$("#main").append("<div id='loadNextButton'><p>Load More</p></div>");
 		}
     });
 }
 
-function getImages(URL, currentDepth, maxDepth, imageNum) {
+function getImages(URL, imageNumber) {
 
 	$.ajax({ // gets images 1-20
     	type: "GET",
         dataType: "jsonp",
         cache: false,
         url: URL,  
-        success: function(data) {
+        success: function(data) {        	
 
-        	nextTwenty(imageNum, data);
+        	nextTwenty(imageNumber, data);
 
-        	if(currentDepth!=maxDepth) {
-
-        		getImages(data.pagination.next_url, currentDepth+1, maxDepth, imageNum+20);
-        	}
+        	nextPageUrl = data.pagination.next_url;
+        	imageNum = imageNum + 20;
 
         	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
     	}
@@ -50,6 +53,8 @@ function onUsernameSubmit() {
 
 	$('#usernameForm').submit(function(){
 
+		console.log("clicked the user submit form");
+
 		var username = document.getElementById('userNameText').value;
 
 		document.getElementById("buttonID").value = "back";
@@ -65,6 +70,13 @@ function onUsernameSubmit() {
 		return false; // doesn't submit the form, so page doesn't reload - allowing this all to work
 	});
 }
+
+$(document).on("click", "#loadNextButton", function() { // this formatting as the element is created new
+	console.log("clicked the load next button");
+	getImages(nextPageUrl, imageNum);
+});
+
+
 
 function removeElements() {
 
