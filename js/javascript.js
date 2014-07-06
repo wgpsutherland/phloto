@@ -1,59 +1,57 @@
-var nextPageUrl;
-var imageNum = 0;
+$(document).ready(function() {
 
-function instagramPhotos(userName) {
+	var nextPageUrl;
+	var imageNum = 0;
 
-	$.ajax({ // converts the given username into the user id
-    	type: "GET",
-        dataType: "jsonp",
-        cache: false,
-        url: "https://api.instagram.com/v1/users/search?q="+userName+"&client_id=cde9b68da7084efb88cec85619580eb0",  
-        success: function(data) {	
+	function displayInitialImages(userName) {
 
-			var userId = data.data[0].id;
+		var clientId = "cde9b68da7084efb88cec85619580eb0";
 
-			getImages("https://api.instagram.com/v1/users/"+userId+"/media/recent/?client_id=cde9b68da7084efb88cec85619580eb0",imageNum);
+		$.ajax({ // converts the given username into the user id
+	    	type: "GET",
+	        dataType: "jsonp",
+	        cache: false,
+	        url: "https://api.instagram.com/v1/users/search?&client_id="+clientId,
+	        data: {
+	        	q: userName
+	        },
+	        success: function(data) {	
 
-			$("#main").append("<div id='loadNextButton'><p>Load More</p></div>");
-		}
-    });
-}
+				getImages("https://api.instagram.com/v1/users/"+data.data[0].id+"/media/recent/?client_id="+clientId,imageNum);
+				$("#main").append("<div id='loadNextButton'><p>Load More</p></div>");
+			}
+	    });
+	}
 
-function getImages(URL, imageNumber) {
+	function getImages(URL, imageNumber) {
 
-	$.ajax({ // gets images 1-20
-    	type: "GET",
-        dataType: "jsonp",
-        cache: false,
-        url: URL,  
-        success: function(data) {        	
+		$.ajax({ // gets images 1-20
+	    	type: "GET",
+	        dataType: "jsonp",
+	        cache: false,
+	        url: URL,  
+	        success: function(data) {        	
 
-        	nextTwenty(imageNumber, data);
+	        	nextTwenty(imageNumber, data);
+	        	nextPageUrl = data.pagination.next_url;
+	        	imageNum = imageNum + 20;
+	        	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
+	    	}
+	    });
+	}
 
-        	nextPageUrl = data.pagination.next_url;
-        	imageNum = imageNum + 20;
+	function nextTwenty(start, data) {
 
-        	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
-    	}
-    });
-}
+		for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram fee
+			var id = (i+start);
 
-function nextTwenty(start, data) {
-
-	for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram fee
-		var id = (i+start);
-
-		$("#instafeed").append("<div class='instaframe smallImage' id='image"+id+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
-		$("#image"+id+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
-		$("#image"+id+"").append("<div id='heart'></div>"); // working on this heart css
-  	}
-}
-
-function onUsernameSubmit() {
+			$("#instafeed").append("<div class='instaframe smallImage' id='image"+id+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
+			$("#image"+id+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
+			$("#image"+id+"").append("<div id='heart'></div>"); // working on this heart css
+	  	}
+	}
 
 	$('#usernameForm').submit(function(){
-
-		console.log("clicked the user submit form");
 
 		var username = document.getElementById('userNameText').value;
 
@@ -61,7 +59,7 @@ function onUsernameSubmit() {
 
 		removeElements();
 
-		instagramPhotos(username);
+		displayInitialImages(username);
 
 		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.toLowerCase().split('').join(' ')+" //</div>"); // adds text of username searched to the header
 
@@ -69,23 +67,17 @@ function onUsernameSubmit() {
 
 		return false; // doesn't submit the form, so page doesn't reload - allowing this all to work
 	});
-}
 
-$(document).on("click", "#loadNextButton", function() { // this formatting as the element is created new
-	console.log("clicked the load next button");
-	getImages(nextPageUrl, imageNum);
+	$(document).on("click", "#loadNextButton", function() { // this formatting as the element is created new
+
+		getImages(nextPageUrl, imageNum);
+	});
+
+	function removeElements() {
+
+		var element = document.getElementById("titleBox"); 
+		element.parentNode.removeChild(element); //removes the welcome text
+		element = document.getElementById("userNameText"); 
+		element.parentNode.removeChild(element); //removes the search bar text
+	}
 });
-
-
-
-function removeElements() {
-
-	var element = document.getElementById("titleBox"); element.parentNode.removeChild(element); //removes the welcome text
-	var element = document.getElementById("userNameText"); element.parentNode.removeChild(element); //removes the search bar text
-}
-
-$(document).ready(function() {
-
-	onUsernameSubmit();
-});
-
