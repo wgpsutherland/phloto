@@ -18,7 +18,8 @@ $(document).ready(function() {
 	        success: function(data) {	
 
 				getImages("https://api.instagram.com/v1/users/"+data.data[0].id+"/media/recent/?client_id="+clientId,imageNum);
-				$("#main").append("<div id='loadNextButton'><p>Load More</p></div>");
+
+				$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><input type='submit' value='load more' name='loadInput' id='loadMoreButton'/></form>");
 			}
 	    });
 	}
@@ -72,6 +73,12 @@ $(document).ready(function() {
 
 		getImages(nextPageUrl, imageNum);
 	});
+
+	$(document).on("submit", "#loadMoreForm", function() {
+
+		getImages(nextPageUrl, imageNum);
+		return false;
+	})
 
 	function removeElements() {
 
