@@ -313,12 +313,12 @@ input[type="submit"]:hover {
 }
 
 .instaframe:hover img{
-	opacity: 0.5;
-	filter: blur(7px);
+	opacity: 0.1;
+	/*filter: blur(7px);
 	-webkit-filter: blur(7px);
 	-moz-filter: blur(7px);
 	-o-filter: blur(7px);
-	-ms-filter: blur(7px);
+	-ms-filter: blur(7px);*/
 }
 
 .instaframe img{
@@ -523,12 +523,3 @@ input[type="submit"]:hover {
 /***************************************** FOOTER ************************************************************/
 /*************************************************************************************************************/
 
-#loadNextButton {
-	width: 100%;
-	background-color: white;
-	color: black;
-	float: left;
-	font-size: 2em;
-	text-align: center;
-	padding:1%;
-}
