@@ -233,7 +233,8 @@ input[type="submit"]:hover {
 }
 
 input[type="submit"]:active {
-	background-color: white;	
+	background-color: white;
+	color: black	
 	transition:none;
 }
 
