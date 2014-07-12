@@ -232,6 +232,11 @@ input[type="submit"]:hover {
 	color: white;
 }
 
+input[type="submit"]:active {
+	background-color: white;	
+	transition:none;
+}
+
 #usernameDisplay {
 	float: left;
 	border: 3px solid transparent;
