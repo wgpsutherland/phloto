@@ -36,7 +36,7 @@ $(document).ready(function() {
 	        	nextTwenty(imageNumber, data);
 	        	nextPageUrl = data.pagination.next_url;
 	        	imageNum = imageNum + 20;
-	        	document.getElementById("image0").className = "instaframe bigImage"; // the first image in the feed is made larger
+	        	document.getElementById("frame0").className = "imageFrame bigImage"; // the first image in the feed is made larger
 	    	}
 	    });
 	}
@@ -46,7 +46,7 @@ $(document).ready(function() {
 		for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram fee
 			var id = (i+start);
 
-			$("#instafeed").append("<div class='instaframe smallImage' id='image"+id+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div>");  
+			$("#instafeed").append("<div class='imageFrame smallImage' id='frame"+id+"'><div class='instaframe' id='image"+id+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div></div>");  
 			$("#image"+id+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
 			$("#image"+id+"").append("<div id='heart'></div>"); // working on this heart css
 	  	}
