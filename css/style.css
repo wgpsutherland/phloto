@@ -202,8 +202,6 @@ h1 {
 	width: 75%;
 	height: 100%;
 	border: 3px solid black;	
-	padding-bottom: 3px;
-	padding-top: 2px;
 	border-radius: 0px;
 }
 
@@ -211,6 +209,8 @@ input {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
+
+	padding: 0;
 }
 
 input[type="submit"] {
@@ -255,10 +255,6 @@ input[type="submit"]:active {
 
 	#userNameText {
 		font-size: 1em;
-
-		/* move this up to the ipad section if it is not aligned when I test it on one */
-		padding-bottom: 0px;
-		padding-top: 0px;
 	}
 
 	input[type="submit"] {
@@ -268,9 +264,6 @@ input[type="submit"]:active {
 
 	#usernameDisplay {
 		font-size: 1em;
-
-		/* test this on ipad when I get the chance */
-		padding-top: 4px;
 		vertical-align: middle;
 	}
 }
@@ -288,7 +281,6 @@ input[type="submit"]:active {
 
 	#usernameDisplay {
 		font-size: 0.8em;
-		padding-top: 3px;
 	}
 }
 
