@@ -21,6 +21,8 @@ $(document).ready(function() {
 
 				getImages("https://api.instagram.com/v1/users/"+data.data[0].id+"/media/recent/?client_id="+clientId,imageNum);
 
+				$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><input type='submit' value='load more' name='loadInput' id='loadMoreButton'/></form>");
+
 			}
 	    });
 	}
@@ -53,17 +55,22 @@ $(document).ready(function() {
 	  	}
 	}
 
-	$(document).on("submit", "#usernameForm", function(e) {
+	$(document).on("submit", ".submitForm", function(e) {
+
+		$("#searchWrapper-main").attr("id","searchWrapper-result");
+		$("#usernameForm-main").attr("id","usernameForm-result");
+		$("#buttonID-main").attr("id","buttonID-result");
+		$("#userNameText-main").attr("id","userNameText-result");
 
 		e.preventDefault(); // prevents the page from reloading when submitting the form
 
-		var username = document.getElementById('userNameText').value;
+		var username = $(".userNameText").val();
 
 		cleanSlate();
 
 		displayInitialImages(username);
 
-		$("#usernameForm").prepend("<div id='usernameDisplay'> // @ "+username.toLowerCase().split('').join(' ')+" //</div>"); // adds text of username searched to the header
+		$("#usernameForm").append("<div id='usernameDisplay'> // @ "+username.toLowerCase().split('').join(' ')+" //</div>"); // adds text of username searched to the header
 
 		document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
 
@@ -94,7 +101,6 @@ $(document).ready(function() {
 		if(loadButton) {
 			loadButton.parentNode.removeChild(loadButton);
 		}
-		$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><input type='submit' value='load more' name='loadInput' id='loadMoreButton'/></form>");
 
 		// removes the old username from the title if not coming from the main page
 		var username = document.getElementById("usernameDisplay");

@@ -100,6 +100,7 @@ body {
 	font-weight: 300;
 	color: black;
 	background-color: black;
+	/*background: radial-gradient(white, black);*/
 }
 
 /* Lanscape iPad */
@@ -147,21 +148,32 @@ body {
 }
 
 /*************************************************************************************************************/
-/***************************************** HEADER ************************************************************/
+/***************************************** SEARCH BOX ********************************************************/
 /*************************************************************************************************************/
 
-header {
+#searchWrapper-main {
 	width: 100%;
-	background-color: white;
 	float: left;
 	padding: 1%;
-	text-align: right;
 	height: 100%;
+	margin: 20% auto 0 auto;
+	display: block;
+}
+
+#searchWrapper-result {
+	width: 100%;
+	float: left;
+	padding: 1%;
+	height: 100%;
+	margin: 0 auto 0 auto;
+	display: block;
+	background-color: white;
+	transition: margin 1s, background-color 1s;
 }
 
 /* Landscape smartphone */
 @media (max-width: 600px) {
-	header {
+	#searchWrapper-main {
 		margin-bottom: 1%;
 	}
 }
@@ -174,17 +186,22 @@ h1 {
 /***************************************** INPUT *************************************************************/
 /*************************************************************************************************************/
 
-#usernameForm {
+#usernameForm-main {
+	width: 70%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#usernameForm-result {
 	width: 100%;
 	height: 100%;
-	background-color: white;
-	float: left;
+	margin: 0 auto;
+	transition: width 1s;
 }
 
 .buttonWrapper {
 	width: 100%;
 	height: 100%;
-	background-color: white;
 	float: left;
 	padding: 1%;
 }
@@ -195,22 +212,79 @@ h1 {
 	width: 50%;
 }
 
-#userNameText {
+#buttonID-main {
+	color: white;
+}
+#buttonID-result {
+	color: black;
+	transition: color 1s;
+}
+
+#buttonID-main:hover {
+	color: red;
+	transition: color 0.2s;
+}
+#buttonID-result:hover {
+	color: red;
+	transition: color 0.2s;
+}
+
+#buttonID-main:active {
+	color: white;
+	transition: none;
+}
+#buttonID-result:active {
+	color: black;
+	transition: none;
+}
+
+#textWrapper {
+	width: 95%;
+	float: left;
+}
+
+#buttonWrapper {
+	width: 5%;
+	float: left;
+}
+
+#userNameText-main {
+	color: white;
+	border-bottom: 3px solid white;	
+}
+#userNameText-result {
+	color: black;
+	border-bottom: 3px solid black;
+	transition: all 1s;	
+}
+.userNameText {
+	display: block;
 	font-size: 2em;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
-	width: 75%;
+	width: 100%;
 	height: 100%;
-	border: 3px solid black;	
+	background: transparent;
 	border-radius: 0px;
+	padding: 3px;
 }
 
 input {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-
+	outline: none;
 	padding: 0;
+	border: none;
+}
+
+button {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	outline: none;
+	padding: 0;
+	border: none;
 }
 
 input[type="submit"] {
@@ -224,7 +298,6 @@ input[type="submit"] {
 	border: 3px solid black;
 	height: 100%;
 	transition: background-color 0.5s,color 0.5s;
-	vertical-align: top;
 }
 
 input[type="submit"]:hover {
@@ -235,6 +308,23 @@ input[type="submit"]:hover {
 input[type="submit"]:active {
 	background-color: white;
 	color: black;	
+	transition:none;
+}
+
+button[type="submit"] {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	width: 100%;
+	background-color: transparent;
+	font-size: 2em;
+	transition: background-color 0.5s,color 0.5s;
+	height: 100%;
+}
+
+button[type="submit"]:hover {
+}
+
+button[type="submit"]:active {
 	transition:none;
 }
 
@@ -259,7 +349,10 @@ input[type="submit"]:active {
 
 	input[type="submit"] {
 		font-size: 1em;
-		width: 23%
+	}
+
+	button[type="submit"] {
+		font-size: 1em;
 	}
 
 	#usernameDisplay {
@@ -276,6 +369,10 @@ input[type="submit"]:active {
 	}
 
 	input[type="submit"] {
+		font-size: 0.8em;
+	}
+
+	button[type="submit"] {
 		font-size: 0.8em;
 	}
 

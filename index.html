@@ -20,24 +20,32 @@
 
 <div id="wrapper">
 
-	<header id="header">
+	<header></header>
 
-		<form id="usernameForm" action="" method="GET">
+	<div id="searchWrapper-main">
 
-			<input type="text" name="username" id="userNameText" autocomplete="off" autofocus required>			
-			<input type="submit" value="submit" name="usernameInput" id="buttonID"/>
+		<form id="usernameForm-main" class="submitForm" action="" method="GET">
+
+			<div id="textWrapper">
+				<input type="text" name="username" id="userNameText-main" class="userNameText" autocomplete="off" autofocus required>	
+			</div>
+
+			<div id="buttonWrapper">
+				<button type="submit" value="submit" name="usernameInput" id="buttonID-main"/><i class="fa fa-search"></i></button>
+			</div>		
 
 		</form>
 
 		<h1 id="userHeader"></h1>
 
-	</header>
+	</div>
+	
 
 	<div id="main">
 
 		<div id="titleBox">
-			<h1>phloto</h1>
-			<p>search for a user and display their instagram feed</p>
+			<!-- <h1>phloto</h1>
+			<p>search for a user and display their instagram feed</p> -->
 		</div>
 
 		<p id="text"></p>
