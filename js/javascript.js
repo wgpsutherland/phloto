@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	var nextPageUrl;
-	var imageNum = 0;
+	var imageNum;
 
 	function displayInitialImages(userName) {
 
@@ -17,9 +17,10 @@ $(document).ready(function() {
 	        },
 	        success: function(data) {	
 
+	        	imageNum = 0;
+
 				getImages("https://api.instagram.com/v1/users/"+data.data[0].id+"/media/recent/?client_id="+clientId,imageNum);
 
-				$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><input type='submit' value='load more' name='loadInput' id='loadMoreButton'/></form>");
 			}
 	    });
 	}
@@ -52,13 +53,13 @@ $(document).ready(function() {
 	  	}
 	}
 
-	$('#usernameForm').submit(function(){
+	$(document).on("submit", "#usernameForm", function(e) {
+
+		e.preventDefault(); // prevents the page from reloading when submitting the form
 
 		var username = document.getElementById('userNameText').value;
 
-		document.getElementById("buttonID").value = "back";
-
-		removeElements();
+		cleanSlate();
 
 		displayInitialImages(username);
 
@@ -66,25 +67,42 @@ $(document).ready(function() {
 
 		document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
 
-		return false; // doesn't submit the form, so page doesn't reload - allowing this all to work
 	});
 
-	$(document).on("click", "#loadNextButton", function() { // this formatting as the element is created new
+	$(document).on("submit", "#loadMoreForm", function(e) {
 
+		e.preventDefault(); // prevents the page from reloading when submitting the form
 		getImages(nextPageUrl, imageNum);
-	});
-
-	$(document).on("submit", "#loadMoreForm", function() {
-
-		getImages(nextPageUrl, imageNum);
-		return false;
 	})
 
-	function removeElements() {
+	// removes results from previous search to allow for a new one
+	function cleanSlate() {
 
-		var element = document.getElementById("titleBox"); 
-		element.parentNode.removeChild(element); //removes the welcome text
-		element = document.getElementById("userNameText"); 
-		element.parentNode.removeChild(element); //removes the search bar text
+		// removes the title if coming from the main page
+		var title = document.getElementById("titleBox"); 
+		if(title) {
+			title.parentNode.removeChild(title); //removes the welcome text
+		}
+
+		// wipes the instafeed
+		var instafeed = document.getElementById("instafeed");
+		instafeed.parentNode.removeChild(instafeed);
+		$("#main").append("<div id='instafeed'></div>");
+
+		// removes the load button if not coming from the main page
+		var loadButton = document.getElementById("loadMoreForm");
+		if(loadButton) {
+			loadButton.parentNode.removeChild(loadButton);
+		}
+		$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><input type='submit' value='load more' name='loadInput' id='loadMoreButton'/></form>");
+
+		// removes the old username from the title if not coming from the main page
+		var username = document.getElementById("usernameDisplay");
+		if(username) {
+			username.parentNode.removeChild(username);
+		}
+		
+		//element = document.getElementById("userNameText"); 
+		//element.parentNode.removeChild(element); //removes the search bar text
 	}
 });
