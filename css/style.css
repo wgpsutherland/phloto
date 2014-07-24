@@ -210,6 +210,13 @@ h1 {
 	margin: 0px auto;
 	display: block;
 	width: 50%;
+	color: white;
+}
+#loadMoreButton:hover {
+	color: red;
+}
+#loadMoreButton:active {
+	color: black;
 }
 
 #buttonID-main {

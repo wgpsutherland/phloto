@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 				getImages("https://api.instagram.com/v1/users/"+data.data[0].id+"/media/recent/?client_id="+clientId,imageNum);
 
-				$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><input type='submit' value='load more' name='loadInput' id='loadMoreButton'/></form>");
+				$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><button type='submit' value='load more' name='loadInput' id='loadMoreButton'><i class='fa fa-chevron-circle-down'></i></button></form>");
 
 			}
 	    });
@@ -72,7 +72,7 @@ $(document).ready(function() {
 
 		$("#usernameForm").append("<div id='usernameDisplay'> // @ "+username.toLowerCase().split('').join(' ')+" //</div>"); // adds text of username searched to the header
 
-		document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
+		//document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
 
 	});
 
