@@ -156,7 +156,7 @@ body {
 	float: left;
 	padding: 1%;
 	height: 100%;
-	margin: 20% auto 0 auto;
+	margin: 9% auto 0 auto;
 	display: block;
 }
 
@@ -518,6 +518,26 @@ button[type="submit"]:active {
 /*************************************************************************************************************/
 /***************************************** TITLE *************************************************************/
 /*************************************************************************************************************/
+
+#title-main {
+	color: white;
+	width: 100%;
+	text-align: center; 
+	padding-bottom: 5%;
+	letter-spacing: 15px;
+	font-size: 8em;
+}
+
+
+#title-result {
+	color: white;
+	width: 100%;
+	text-align: center; 
+	padding: none;
+	letter-spacing: 15px;
+	font-size: 0em;
+	transition: font-size 1s, padding 1s;
+}
 
 #titleBox {
 	width: 100%;

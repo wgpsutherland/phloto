@@ -61,6 +61,7 @@ $(document).ready(function() {
 		$("#usernameForm-main").attr("id","usernameForm-result");
 		$("#buttonID-main").attr("id","buttonID-result");
 		$("#userNameText-main").attr("id","userNameText-result");
+		$("#title-main").attr("id","title-result");
 
 		e.preventDefault(); // prevents the page from reloading when submitting the form
 
