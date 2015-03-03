@@ -46,7 +46,8 @@ $(document).ready(function() {
 
 	function nextTwenty(start, data) {
 
-		for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram fee
+		for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram feed
+
 			var id = (i+start);
 
 			$("#instafeed").append("<div class='imageFrame smallImage' id='frame"+id+"'><div class='instaframe' id='image"+id+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div></div>");  
@@ -86,30 +87,20 @@ $(document).ready(function() {
 	// removes results from previous search to allow for a new one
 	function cleanSlate() {
 
-		// removes the title if coming from the main page
-		var title = document.getElementById("titleBox"); 
-		if(title) {
-			title.parentNode.removeChild(title); //removes the welcome text
+		if($('#titleBox')) { // removes the title if coming from the main page
+			$('#titleBox').remove();
 		}
 
-		// wipes the instafeed
-		var instafeed = document.getElementById("instafeed");
-		instafeed.parentNode.removeChild(instafeed);
+		if($("#loadMoreForm")) { // removes the load button if not coming from the main page
+			$("#loadMoreForm").remove();
+		}
+
+		if($("#usernameDisplay")) { // removes the old username from the title if not coming from the main page
+			$("#usernameDisplay").remove();
+		}
+
+		// wipes the instafeed and re-adds it
+		$("#instafeed")[0].remove();
 		$("#main").append("<div id='instafeed'></div>");
-
-		// removes the load button if not coming from the main page
-		var loadButton = document.getElementById("loadMoreForm");
-		if(loadButton) {
-			loadButton.parentNode.removeChild(loadButton);
-		}
-
-		// removes the old username from the title if not coming from the main page
-		var username = document.getElementById("usernameDisplay");
-		if(username) {
-			username.parentNode.removeChild(username);
-		}
-		
-		//element = document.getElementById("userNameText"); 
-		//element.parentNode.removeChild(element); //removes the search bar text
 	}
 });
