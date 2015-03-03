@@ -71,11 +71,6 @@ $(document).ready(function() {
 		cleanSlate();
 
 		displayInitialImages(username);
-
-		$("#usernameForm").append("<div id='usernameDisplay'> // @ "+username.toLowerCase().split('').join(' ')+" //</div>"); // adds text of username searched to the header
-
-		//document.getElementById("usernameDisplay").style.height = document.getElementById('buttonID').offsetHeight + "px"; // makes the button and text the same height
-
 	});
 
 	$(document).on("submit", "#loadMoreForm", function(e) {
@@ -95,12 +90,8 @@ $(document).ready(function() {
 			$("#loadMoreForm").remove();
 		}
 
-		if($("#usernameDisplay")) { // removes the old username from the title if not coming from the main page
-			$("#usernameDisplay").remove();
-		}
-
 		// wipes the instafeed and re-adds it
-		$("#instafeed")[0].remove();
+		$("#instafeed").remove();
 		$("#main").append("<div id='instafeed'></div>");
 	}
 });
