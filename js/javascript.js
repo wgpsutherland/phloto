@@ -45,9 +45,17 @@ $(function() {
 				var userId = response.data[0].id;
 
 				if(response.data.length > 0) {
+
 					getImages("https://api.instagram.com/v1/users/" + userId + "/media/recent/", imageNum);
 
-					$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><button type='submit' value='load more' name='loadInput' id='loadMoreButton'><i class='fa fa-chevron-circle-down'></i></button></form>");
+					var buttonString = "<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'>"+
+						"<button type='submit' value='load more' name='loadInput' id='loadMoreButton'>"+
+						"<i class='fa fa-chevron-circle-down'>" +
+						"</i>" +
+						"</button>" +
+						"</form>";
+
+					$("#main").append(buttonString);
 
 				} else {
 					console.log("this user doesn't exist");
@@ -79,12 +87,16 @@ $(function() {
 	function nextTwenty(start, data) {
 
 		for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram feed
-
 			var id = (i+start);
-
-			$("#instafeed").append("<div class='imageFrame smallImage' id='frame"+id+"'><div class='instaframe' id='image"+id+"'><img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/></div></div>");  
-			$("#image"+id+"").append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
-			$("#image"+id+"").append("<div id='heart'></div>"); // working on this heart css
+			var imageIdTag = $("#image"+id);
+			var imageElementString = "<div class='imageFrame smallImage' id='frame"+id+"'>" +
+				"<div class='instaframe' id='image"+id+"'>" +
+				"<img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/>" +
+				"</div>" +
+				"</div>";
+			$("#instafeed").append(imageElementString);
+			imageIdTag.append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
+			imageIdTag.append("<div id='heart'></div>"); // working on this heart css
 	  	}
 	}
 
