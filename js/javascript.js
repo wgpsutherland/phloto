@@ -109,8 +109,6 @@ $(function() {
 		var loadMoreForm = $("#loadMoreForm");
 		if(loadMoreForm) { loadMoreForm.remove(); }
 
-		// wipes the instafeed and re-adds it
-		$("#instafeed").remove();
-		$("#main").append("<div id='instafeed'></div>");
+		$("#instafeed").empty();
 	}
 });
