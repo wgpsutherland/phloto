@@ -66,7 +66,7 @@ $(function() {
 
 	function getImages(URL, imageNumber) {
 
-		$.ajax({ // gets images 1-20
+		$.ajax({
 	    	type: "GET",
 	        dataType: "jsonp",
 	        cache: false,
@@ -74,19 +74,19 @@ $(function() {
 			data: {
 				client_id: clientId
 			},
-	        success: function(data) {        	
-
-	        	nextTwenty(imageNumber, data);
-	        	nextPageUrl = data.pagination.next_url;
-	        	imageNum = imageNum + 20;
 	        	document.getElementById("frame0").className = "imageFrame bigImage"; // the first image in the feed is made larger
+	        success: function(response) {
+				var numImages = response.data.length;
+	        	nextX(imageNumber, response, numImages);
+	        	nextPageUrl = response.pagination.next_url;
+	        	imageNum = imageNum + numImages;
 	    	}
 	    });
 	}
 
-	function nextTwenty(start, data) {
+	function nextX(start, data, num) {
 
-		for (var i = 0; i < 20; i++) { // loops through the 20 latest images on the instagram feed
+		for (var i = 0; i < num; i++) { // loops through the 20 latest images on the instagram feed
 			var id = (i+start);
 			var imageIdTag = $("#image"+id);
 			var imageElementString = "<div class='imageFrame smallImage' id='frame"+id+"'>" +
