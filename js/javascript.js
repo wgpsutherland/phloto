@@ -42,8 +42,6 @@ $(function() {
 
 	        	imageNum = 0;
 
-				console.log(response);
-
 				if(response.data.length > 0) {
 
 					var userId = response.data[0].id;
@@ -77,11 +75,15 @@ $(function() {
 				client_id: clientId
 			},
 	        success: function(response) {
-				var numImages = response.data.length;
-	        	nextX(imageNumber, response, numImages);
-	        	nextPageUrl = response.pagination.next_url;
-	        	imageNum = imageNum + numImages;
-				$("#frame0").removeClass("smallImage").addClass("bigImage"); // the first image in the feed is made larger
+				if(response.meta.code == 200) {
+					var numImages = response.data.length;
+					nextX(imageNumber, response, numImages);
+					nextPageUrl = response.pagination.next_url;
+					imageNum = imageNum + numImages;
+					$("#frame0").removeClass("smallImage").addClass("bigImage"); // the first image in the feed is made larger
+				} else {
+					$("#instafeed").append("<h1 class='no-user'>This user is private.</h1>");
+				}
 	    	}
 	    });
 	}
