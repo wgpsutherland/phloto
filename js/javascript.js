@@ -1,28 +1,57 @@
-$(document).ready(function() {
+$(function() {
 
 	var nextPageUrl;
 	var imageNum;
+	var clientId = "cde9b68da7084efb88cec85619580eb0";
+
+	$(document).on("submit", ".submitForm", function(e) {
+
+		// changes the ids to activate the CSS animation from the main page to the photo page
+		$("#searchWrapper-main").attr("id","searchWrapper-result");
+		$("#usernameForm-main").attr("id","usernameForm-result");
+		$("#buttonID-main").attr("id","buttonID-result");
+		$("#userNameText-main").attr("id","userNameText-result");
+		$("#title-main").attr("id","title-result");
+
+		e.preventDefault(); // prevents the page from reloading when submitting the form
+		cleanSlate();
+
+		var username = $(".userNameText").val();
+		displayInitialImages(username);
+	});
+
+	$(document).on("submit", "#loadMoreForm", function(e) {
+
+		e.preventDefault(); // prevents the page from reloading when submitting the form
+		getImages(nextPageUrl, imageNum);
+	});
 
 	function displayInitialImages(userName) {
 
-		var clientId = "cde9b68da7084efb88cec85619580eb0";
-
-		$.ajax({ // converts the given username into the user id
+		// converts the given username into the user id
+		$.ajax({
 	    	type: "GET",
 	        dataType: "jsonp",
 	        cache: false,
-	        url: "https://api.instagram.com/v1/users/search?&client_id="+clientId,
+	        url: "https://api.instagram.com/v1/users/search",
 	        data: {
+				client_id: clientId,
 	        	q: userName
 	        },
-	        success: function(data) {	
+	        success: function(response) {
 
 	        	imageNum = 0;
 
-				getImages("https://api.instagram.com/v1/users/"+data.data[0].id+"/media/recent/?client_id="+clientId,imageNum);
+				var userId = response.data[0].id;
 
-				$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><button type='submit' value='load more' name='loadInput' id='loadMoreButton'><i class='fa fa-chevron-circle-down'></i></button></form>");
+				if(response.data.length > 0) {
+					getImages("https://api.instagram.com/v1/users/" + userId + "/media/recent/", imageNum);
 
+					$("#main").append("<form id='loadMoreForm' class='buttonWrapper' action='' method='GET'><button type='submit' value='load more' name='loadInput' id='loadMoreButton'><i class='fa fa-chevron-circle-down'></i></button></form>");
+
+				} else {
+					console.log("this user doesn't exist");
+				}
 			}
 	    });
 	}
@@ -33,7 +62,10 @@ $(document).ready(function() {
 	    	type: "GET",
 	        dataType: "jsonp",
 	        cache: false,
-	        url: URL,  
+	        url: URL,
+			data: {
+				client_id: clientId
+			},
 	        success: function(data) {        	
 
 	        	nextTwenty(imageNumber, data);
@@ -56,39 +88,16 @@ $(document).ready(function() {
 	  	}
 	}
 
-	$(document).on("submit", ".submitForm", function(e) {
-
-		$("#searchWrapper-main").attr("id","searchWrapper-result");
-		$("#usernameForm-main").attr("id","usernameForm-result");
-		$("#buttonID-main").attr("id","buttonID-result");
-		$("#userNameText-main").attr("id","userNameText-result");
-		$("#title-main").attr("id","title-result");
-
-		e.preventDefault(); // prevents the page from reloading when submitting the form
-
-		var username = $(".userNameText").val();
-
-		cleanSlate();
-
-		displayInitialImages(username);
-	});
-
-	$(document).on("submit", "#loadMoreForm", function(e) {
-
-		e.preventDefault(); // prevents the page from reloading when submitting the form
-		getImages(nextPageUrl, imageNum);
-	})
-
 	// removes results from previous search to allow for a new one
 	function cleanSlate() {
 
-		if($('#titleBox')) { // removes the title if coming from the main page
-			$('#titleBox').remove();
-		}
+		// removes the title if coming from the main page
+		var titleBox = $('#titleBox');
+		if(titleBox) { titleBox.remove(); }
 
-		if($("#loadMoreForm")) { // removes the load button if not coming from the main page
-			$("#loadMoreForm").remove();
-		}
+		// removes the load button if not coming from the main page
+		var loadMoreForm = $("#loadMoreForm");
+		if(loadMoreForm) { loadMoreForm.remove(); }
 
 		// wipes the instafeed and re-adds it
 		$("#instafeed").remove();
