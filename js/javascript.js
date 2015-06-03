@@ -42,9 +42,11 @@ $(function() {
 
 	        	imageNum = 0;
 
-				var userId = response.data[0].id;
+				console.log(response);
 
 				if(response.data.length > 0) {
+
+					var userId = response.data[0].id;
 
 					getImages("https://api.instagram.com/v1/users/" + userId + "/media/recent/", imageNum);
 
@@ -58,7 +60,7 @@ $(function() {
 					$("#main").append(buttonString);
 
 				} else {
-					console.log("this user doesn't exist");
+					$("#instafeed").append("<h1 class='no-user'>This user does not exist.</h1>");
 				}
 			}
 	    });
