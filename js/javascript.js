@@ -88,15 +88,13 @@ $(function() {
 
 		for (var i = 0; i < num; i++) { // loops through the 20 latest images on the instagram feed
 			var id = (i+start);
-			var imageIdTag = $("#image"+id);
 			var imageElementString = "<div class='imageFrame smallImage' id='frame"+id+"'>" +
 				"<div class='instaframe' id='image"+id+"'>" +
 				"<img class='instaimage' src='" + data.data[i].images.standard_resolution.url +"'/>" +
 				"</div>" +
 				"</div>";
 			$("#instafeed").append(imageElementString);
-			imageIdTag.append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
-			imageIdTag.append("<div id='heart'></div>"); // working on this heart css
+			$("#image"+id).append("<p class='likeCount'>"+data.data[i].likes.count+"</p>"); // inserts the like counts for each image
 	  	}
 	}
 
