@@ -74,12 +74,12 @@ $(function() {
 			data: {
 				client_id: clientId
 			},
-	        	document.getElementById("frame0").className = "imageFrame bigImage"; // the first image in the feed is made larger
 	        success: function(response) {
 				var numImages = response.data.length;
 	        	nextX(imageNumber, response, numImages);
 	        	nextPageUrl = response.pagination.next_url;
 	        	imageNum = imageNum + numImages;
+				$("#frame0").removeClass("smallImage").addClass("bigImage"); // the first image in the feed is made larger
 	    	}
 	    });
 	}
